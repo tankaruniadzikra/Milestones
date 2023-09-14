@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        h3, h4 {
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 50px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #total {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Kami menyediakan Panel Surya dengan merk Polycrystalline 200Watt</h3>
+        <h3>Harga Paket: Rp 6.000.000 (Sudah termasuk jasa instalasi)</h3><br><br>
+        <h4>Apa yang Anda Dapatkan:</h4>
+        <p>1 Panel Surya Polikristalin 200 Watt</p>
+        <p>Rangka Pemasangan</p>
+        <p>Terminal MC4 untuk Koneksi</p><br><br>
+
+        <h1>Segera Pesan Sekarang</h1>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" max="6" value="1"><br>
+
+        <button onclick="calculateTotal()">Calculate</button><br>
+
+        <h2>Total Price:</h2>
+        <div id="total"></div>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const unitPrice = [0, 6000000, 9000000, 12000000, 15000000, 18000000, 21000000];
+            const discount = [0, 1000000, 1000000, 1500000, 1500000, 2000000, 2000000];
+
+            let totalPrice = unitPrice[quantity] - discount[quantity];
+
+            document.getElementById('total').textContent = `Harga Setelah Diskon: ${formatCurrency(totalPrice)}`;
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(amount);
+        }
+    </script>
+</body>
+</html>
